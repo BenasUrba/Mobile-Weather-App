@@ -21,4 +21,21 @@ body.dark-mode {
     color: var(--light-mode);
 }
 
+.toggle-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
 
+.back-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}

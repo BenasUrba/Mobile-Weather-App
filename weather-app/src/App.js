@@ -3,13 +3,11 @@ import './styles/styles.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WeatherPage />} />
+      </Routes>
+    </Router>
   );
 }
 
