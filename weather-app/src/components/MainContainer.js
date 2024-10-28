@@ -9,6 +9,7 @@ import rainDark from '../assets/rainDark.png';
 import humidityLight from '../assets/humidityLight.png';
 import humidityDark from '../assets/humidityDark.png';
 import HourlyForecast from './HourlyForecast';
+import WeekForecast from './WeekForecast';
 
 function MainContainer() {
     const { isDarkMode } = useContext(ThemeContext);
@@ -27,6 +28,16 @@ function MainContainer() {
         { time: "7 PM", temperature: 21, weatherIcon: cloudy },
         { time: "8 PM", temperature: 20, weatherIcon: cloudy },
         { time: "9 PM", temperature: 19, weatherIcon: cloudy },
+    ];
+
+    const weeklyData = [
+        { day: "Mon", low: 22, high: 28, icon: cloudy },
+        { day: "Tue", low: 21, high: 27, icon: cloudy },
+        { day: "Wed", low: 23, high: 29, icon: cloudy },
+        { day: "Thu", low: 20, high: 26, icon: cloudy },
+        { day: "Fri", low: 19, high: 25, icon: cloudy },
+        { day: "Sat", low: 20, high: 26, icon: cloudy },
+        { day: "Sun", low: 21, high: 27, icon: cloudy },
     ];
 
 
@@ -53,6 +64,7 @@ function MainContainer() {
                 </div>
                 <div className="footer-container">
                     <HourlyForecast hourlyData={hourlyData} />
+                    <WeekForecast weeklyData={weeklyData} />
                 </div>
             </div>
         </div>
