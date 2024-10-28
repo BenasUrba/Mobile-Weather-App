@@ -8,13 +8,26 @@ import rainLight from '../assets/rainLight.png';
 import rainDark from '../assets/rainDark.png';
 import humidityLight from '../assets/humidityLight.png';
 import humidityDark from '../assets/humidityDark.png';
-
+import HourlyForecast from './HourlyForecast';
 
 function MainContainer() {
     const { isDarkMode } = useContext(ThemeContext);
     const windIcon = isDarkMode ? windLight : windDark;
     const rainIcon = isDarkMode ? rainLight : rainDark;
     const humidityIcon = isDarkMode ? humidityLight : humidityDark;
+
+    const hourlyData = [
+        { time: "Now", temperature: 25, weatherIcon: cloudy },
+        { time: "1 PM", temperature: 26, weatherIcon: cloudy },
+        { time: "2 PM", temperature: 26, weatherIcon: cloudy },
+        { time: "3 PM", temperature: 25, weatherIcon: cloudy },
+        { time: "4 PM", temperature: 24, weatherIcon: cloudy },
+        { time: "5 PM", temperature: 23, weatherIcon: cloudy },
+        { time: "6 PM", temperature: 22, weatherIcon: cloudy },
+        { time: "7 PM", temperature: 21, weatherIcon: cloudy },
+        { time: "8 PM", temperature: 20, weatherIcon: cloudy },
+        { time: "9 PM", temperature: 19, weatherIcon: cloudy },
+    ];
 
 
     return (
@@ -37,6 +50,9 @@ function MainContainer() {
                         <img src={humidityIcon} className="extra-info-icon" alt="humidity icon" />
                         <div className="info-text">69%</div>
                     </div>
+                </div>
+                <div className="footer-container">
+                    <HourlyForecast hourlyData={hourlyData} />
                 </div>
             </div>
         </div>
