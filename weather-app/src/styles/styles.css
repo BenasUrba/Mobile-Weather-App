@@ -1,0 +1,24 @@
+:root {
+    --light-mode: rgb(229, 236, 244);
+    --dark-mode: rgb(49, 55, 69);
+}
+
+html, body {
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+}
+
+body.light-mode {
+    background-color: var(--light-mode);
+    color: var(--dark-mode);
+}
+
+body.dark-mode {
+    background-color: var(--dark-mode);
+    color: var(--light-mode);
+}
+
+
