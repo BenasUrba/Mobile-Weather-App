@@ -3,6 +3,11 @@
     --dark-mode: rgb(49, 55, 69);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+
+
 html, body {
     margin: 0;
 }
@@ -38,4 +43,79 @@ body.dark-mode {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.main-container {
+    position: relative;
+    height: 30rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 1px;
+    background-color: currentColor;  
+}
+
+
+.location-name {
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+}
+
+.weather-icon {
+    width: 12rem;
+    object-fit: contain;
+    padding-top: 3rem;
+}
+
+.temp-text {
+    padding-top: 0.5rem;
+    font-size: 4rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+}
+
+.weather-description {
+    font-size: 0.8rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: -1rem;
+}
+
+.extra-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    padding-top: 1.5rem;
+}
+
+.extra-info-icon {
+    width: 2rem;
+    object-fit: contain;
+    
+}
+
+.extra-info-tags {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.info-text {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
 }
