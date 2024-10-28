@@ -62,10 +62,10 @@ function MainContainer() {
                         <div className="info-text">69%</div>
                     </div>
                 </div>
-                <div className="footer-container">
-                    <HourlyForecast hourlyData={hourlyData} />
-                    <WeekForecast weeklyData={weeklyData} />
-                </div>
+            </div>
+            <div className="footer-container">
+                <HourlyForecast hourlyData={hourlyData} />
+                <WeekForecast weeklyData={weeklyData} />
             </div>
         </div>
     );
