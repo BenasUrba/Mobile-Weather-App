@@ -43,7 +43,7 @@ function MainContainer() {
     return (
         <div>
             <div className="main-container">
-                <div className="location-name">Mumbai, India</div>
+                <div className="location-name">London, England</div>
                 <img src={cloudy} className="weather-icon" alt="weather icon" />
                 <div className="temp-text">25°C</div>
                 <div className="weather-description">Cloudy</div>
