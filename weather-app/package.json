@@ -37,5 +37,8 @@
       "last 1 safari version"
     ],
     "homepage": "https://BenasUrba.github.io/Mobile-Weather-App"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
   }
 }
