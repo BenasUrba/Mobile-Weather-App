@@ -1,5 +1,5 @@
 import './styles/styles.css';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WeatherPage from './pages/weatherPage';
 import SearchPage from './pages/searchPage';
 import { FavouritesProvider } from './context/FavouritesContext';
