@@ -1,25 +1,26 @@
-import React from "react";
-import '../styles/styles.css';
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function SearchBox({ onSearch }) {
-
-    const [location, setLocation] = useState('');
+function SearchBox() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSearch(location);
+        if (searchTerm.trim()) {
+            const encodedLocation = encodeURIComponent(searchTerm.trim());
+            navigate(`/weather/${encodedLocation}`);
+        }
     };
 
     return (
         <form onSubmit={handleSubmit} className="search-form">
-            <input 
-                type="search"
-                value={location} 
-                onChange={(e) => setLocation(e.target.value)} 
-                placeholder="Enter location" 
+            <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search for a city..."
                 className="search-input"
-                enterKeyHint="search"
             />
         </form>
     );

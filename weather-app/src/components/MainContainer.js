@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import '../styles/styles.css';
-import cloudy from '../assets/cloudy.png';
 import windLight from '../assets/windLight.png';
 import windDark from '../assets/windDark.png';
 import { ThemeContext } from '../context/ThemeContext';
@@ -8,63 +7,65 @@ import rainLight from '../assets/rainLight.png';
 import rainDark from '../assets/rainDark.png';
 import humidityLight from '../assets/humidityLight.png';
 import humidityDark from '../assets/humidityDark.png';
+import rainBlue from '../assets/rainBlue.png';
 import HourlyForecast from './HourlyForecast';
 import WeekForecast from './WeekForecast';
 
-function MainContainer() {
+function MainContainer({ weatherData, forecastData }) {
     const { isDarkMode } = useContext(ThemeContext);
     const windIcon = isDarkMode ? windLight : windDark;
     const rainIcon = isDarkMode ? rainLight : rainDark;
     const humidityIcon = isDarkMode ? humidityLight : humidityDark;
 
-    const hourlyData = [
-        { time: "Now", temperature: 25, weatherIcon: cloudy },
-        { time: "1 PM", temperature: 26, weatherIcon: cloudy },
-        { time: "2 PM", temperature: 26, weatherIcon: cloudy },
-        { time: "3 PM", temperature: 25, weatherIcon: cloudy },
-        { time: "4 PM", temperature: 24, weatherIcon: cloudy },
-        { time: "5 PM", temperature: 23, weatherIcon: cloudy },
-        { time: "6 PM", temperature: 22, weatherIcon: cloudy },
-        { time: "7 PM", temperature: 21, weatherIcon: cloudy },
-        { time: "8 PM", temperature: 20, weatherIcon: cloudy },
-        { time: "9 PM", temperature: 19, weatherIcon: cloudy },
-    ];
+    if (!weatherData || !forecastData) {
+        return <div>Loading...</div>;
+    }
 
-    const weeklyData = [
-        { day: "Mon", low: 22, high: 28, icon: cloudy },
-        { day: "Tue", low: 21, high: 27, icon: cloudy },
-        { day: "Wed", low: 23, high: 29, icon: cloudy },
-        { day: "Thu", low: 20, high: 26, icon: cloudy },
-        { day: "Fri", low: 19, high: 25, icon: cloudy },
-        { day: "Sat", low: 20, high: 26, icon: cloudy },
-        { day: "Sun", low: 21, high: 27, icon: cloudy },
-    ];
+    const hourlyData = forecastData.list.slice(0,10).map(item => ({
+        time: new Date(item.dt * 1000).getHours() + ":00",
+        temperature: Math.round(item.main.temp),
+        weatherIcon: `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+        pop: item.pop,
+    }))
+    
+
+    const dailyPrecipitation = forecastData.list
+    .slice(0, 8) // Get first 24 hours (8 x 3-hour intervals)
+    .reduce((total, item) => {
+        const rain = item.rain?.['3h'] || 0;  // 3-hour rain amount
+        const snow = item.snow?.['3h'] || 0;  // 3-hour snow amount
+        return total + rain + snow;
+    }, 0);
 
     return (
         <div>
             <div className="main-container">
-                <div className="location-name">London, England</div>
-                <img src={cloudy} className="weather-icon" alt="weather icon" />
-                <div className="temp-text">25°C</div>
-                <div className="weather-description">Cloudy</div>
+                <div className="location-name">{weatherData.name}, {weatherData.sys.country}</div>
+                <img 
+                    src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
+                    className="weather-icon" 
+                    alt="weather icon" 
+                />
+                <div className="temp-text">{Math.round(weatherData.main.temp)}°C</div>
+                <div className="weather-description">{weatherData.weather[0].description}</div>
                 <div className="extra-info">
                     <div className="extra-info-tags">
                         <img src={windIcon} className="extra-info-icon" alt="wind icon" />
-                        <div className="info-text">4km/hr</div>
+                        <div className="info-text">{Math.round(weatherData.wind.speed)}m/s</div>
                     </div>
                     <div className="extra-info-tags">
                         <img src={rainIcon} className="extra-info-icon" alt="rain icon" />
-                        <div className="info-text">10mm</div>
+                        <div className="info-text">{Math.round(forecastData.list[0].pop * 100)}%</div>
                     </div>
                     <div className="extra-info-tags">
                         <img src={humidityIcon} className="extra-info-icon" alt="humidity icon" />
-                        <div className="info-text">69%</div>
+                        <div className="info-text">{weatherData.main.humidity}%</div>
                     </div>
                 </div>
             </div>
             <div className="footer-container">
                 <HourlyForecast hourlyData={hourlyData} />
-                <WeekForecast weeklyData={weeklyData} />
+                <WeekForecast forecastData={forecastData} />
             </div>
         </div>
     );

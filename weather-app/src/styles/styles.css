@@ -14,11 +14,14 @@
 html, body {
     margin: 0;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .container {
     height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 body.light-mode {
@@ -53,7 +56,7 @@ body.dark-mode {
 
 .main-container {
     position: relative;
-    height: 30rem;
+    min-height: 29rem;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -72,8 +75,9 @@ body.dark-mode {
 }
 
 .footer-container {
-    min-height: 17rem; /* Keeps a minimum height to prevent content squishing */
-    
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 2rem;
 }
 
 .location-name {
@@ -323,3 +327,27 @@ body.dark-mode {
     font-style: italic;
     color: rgba(var(--text-color), 0.7);
 }
+
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.forecast-pop {
+  color: #3498db; /* Blue color for precipitation */
+  font-size: 0.8em;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+}
+
+.forecast-title {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
