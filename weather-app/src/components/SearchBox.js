@@ -8,7 +8,11 @@ function SearchBox() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm.trim()) {
-            const encodedLocation = encodeURIComponent(searchTerm.trim());
+            const formattedSearch = searchTerm.includes(',') 
+                ? searchTerm.split(',').map(term => term.trim()).join(',')
+                : searchTerm.trim();
+            
+            const encodedLocation = encodeURIComponent(formattedSearch);
             navigate(`/weather/${encodedLocation}`);
         }
     };
@@ -19,7 +23,7 @@ function SearchBox() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search for a city..."
+                placeholder="Search for a city (e.g., Rome, IT)"
                 className="search-input"
             />
         </form>

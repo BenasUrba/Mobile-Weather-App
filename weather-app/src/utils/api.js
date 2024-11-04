@@ -10,6 +10,9 @@ export const fetchWeatherData = async (city) => {
             if (response.status === 401) {
                 throw new Error('Invalid API key. Please check your OpenWeatherMap API key.');
             }
+            if (response.status === 404) {
+                throw new Error(`${city} was not found. Please check the city name and try again.`);
+            }
             const errorData = await response.json();
             throw new Error(errorData.message || 'Failed to fetch weather data');
         }
