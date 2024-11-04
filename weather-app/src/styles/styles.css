@@ -3,11 +3,7 @@
     --dark-mode: rgb(49, 55, 69);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500&family=Oswald:wght@400&family=Poppins:wght@700&family=Inter:wght@600&display=swap');
 
 
 
@@ -84,6 +80,15 @@ body.dark-mode {
     font-size: 1.4rem;
     font-weight: 400;
     font-family: 'Oswald', sans-serif;
+}
+
+/* Main weather icon */
+body.light-mode .weather-icon {
+    filter: drop-shadow(0 0 8px rgba(70, 130, 180, 0.5));  /* Steel blue */
+}
+
+body.dark-mode .weather-icon {
+    filter: drop-shadow(0 0 8px rgba(176, 224, 230, 0.5));  /* Powder blue */
 }
 
 .weather-icon {
@@ -174,6 +179,15 @@ body.dark-mode {
     font-size: 1.2rem;
 }
 
+/* Hourly forecast icon */
+body.light-mode .forecast-icon {
+    filter: drop-shadow(0 0 2px rgba(70, 130, 180, 0.5));
+}
+
+body.dark-mode .forecast-icon {
+    filter: drop-shadow(0 0 2px rgba(176, 224, 230, 0.5));
+}
+
 .forecast-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -210,12 +224,16 @@ body.dark-mode {
     flex: 0.8;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .forecast-temps {
     flex: 1.5;
     display: flex;
     justify-content: flex-start;
+    min-width: 100px;
+    margin-left: 0.5rem;
 }
 
 .forecast-text {
@@ -223,6 +241,15 @@ body.dark-mode {
     font-family: 'Kanit', sans-serif;
     font-weight: 400;
     
+}
+
+/* Weekly forecast icon */
+body.light-mode .weekly-icon {
+    filter: drop-shadow(0 0 2px rgba(70, 130, 180, 0.5));
+}
+
+body.dark-mode .weekly-icon {
+    filter: drop-shadow(0 0 2px rgba(176, 224, 230, 0.5));
 }
 
 .weekly-icon {
