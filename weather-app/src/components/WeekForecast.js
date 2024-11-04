@@ -12,11 +12,15 @@ const ForecastCard = ({ day, low, high, icon, pop }) => (
                 alt="weather icon" 
                 className="weekly-icon" 
             />
+            {pop >= 0.1 && (
+                <span className="forecast-pop">
+                    {Math.round((pop * 100) / 5) * 5}%
+                </span>
+            )}
         </div>
         <div className="forecast-temps">
             <span className="forecast-text">
                 Low: {low}° / High: {high}°
-                {pop > 0 && <span> • {Math.round(pop * 100)}% ☔</span>}
             </span>
         </div>
     </div>
@@ -37,7 +41,8 @@ const WeekForecast = ({ forecastData }) => {
                 low: temp,
                 high: temp,
                 icon: item.weather[0].icon,
-                pop: item.pop,
+                popSum: item.pop > 0 ? item.pop : 0,
+                rainReadings: item.pop > 0 ? 1 : 0,
                 readings: 1
             });
         } else {
@@ -46,7 +51,8 @@ const WeekForecast = ({ forecastData }) => {
                 ...existing,
                 low: Math.min(existing.low, temp),
                 high: Math.max(existing.high, temp),
-                pop: Math.max(existing.pop, item.pop),
+                popSum: item.pop > 0 ? existing.popSum + item.pop : existing.popSum,
+                rainReadings: item.pop > 0 ? existing.rainReadings + 1 : existing.rainReadings,
                 readings: existing.readings + 1
             });
         }
@@ -56,7 +62,8 @@ const WeekForecast = ({ forecastData }) => {
         .slice(0, 5)
         .map((forecast, index) => ({
             ...forecast,
-            day: index === 0 ? 'Today' : forecast.date.toLocaleDateString('en-US', { weekday: 'short' })
+            day: index === 0 ? 'Today' : forecast.date.toLocaleDateString('en-US', { weekday: 'short' }),
+            pop: forecast.rainReadings > 0 ? forecast.popSum / forecast.rainReadings : 0
         }));
 
     return (

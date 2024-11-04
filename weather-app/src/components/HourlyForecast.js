@@ -6,15 +6,20 @@ const ForecastCard = ({ time, temp, icon, pop }) => (
       <span className="forecast-time">{time}</span>
       <div className="icon-container">
         <img src={icon} alt="weather icon" className="forecast-icon" />
-        {pop > 0 && (
-          <span className="forecast-pop">{pop}%</span>
+        {pop >= 10 && (
+          <span className="forecast-pop">{Math.round(pop / 5) * 5}%</span>
         )}
       </div>
       <span className="forecast-temp">{temp}°</span>
     </div>
   );
+
+
   
   const HourlyForecast = ({ hourlyData }) => {
+
+    console.log(hourlyData);
+    
     return (<>
       <div className="forecast-title">3-Hour Forecast</div>
       <div className="hourly-forecast">

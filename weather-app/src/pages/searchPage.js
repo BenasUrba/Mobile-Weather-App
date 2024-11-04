@@ -8,16 +8,12 @@ import FavoriteItem from '../components/FavoriteItem';
 function SearchPage() {
     const { favourites } = useContext(FavouritesContext);
 
-    const handleSearch = (location) => {
-        console.log('Searching for:', location);
-    };
-
     return (
         <>
             <ThemeToggle className="home-toggle"/>
             <div className="search-page-container">
                 <h1 className="search-page-header">Weather App</h1>
-                <SearchBox onSearch={handleSearch} />
+                <SearchBox />
             </div>
             <div className="favourites-container">
                 <h2 className="favourites-header">Your Saved Locations</h2>
