@@ -55,7 +55,7 @@ function MainContainer({ weatherData, forecastData }) {
                     </div>
                     <div className="extra-info-tags">
                         <img src={rainIcon} className="extra-info-icon" alt="rain icon" />
-                        <div className="info-text">{Math.round(forecastData.list[0].pop * 100)}%</div>
+                        <div className="info-text">{Math.round(forecastData.list[0].pop * 100 / 5) * 5}%</div>
                     </div>
                     <div className="extra-info-tags">
                         <img src={humidityIcon} className="extra-info-icon" alt="humidity icon" />

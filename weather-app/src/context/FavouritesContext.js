@@ -27,6 +27,9 @@ export function FavouritesProvider({ children }) {
             setFavourites(prev => [...prev, {
                 name: location.name,
                 coordinates: location.coordinates,
+                icon: location.icon,
+                pop: location.pop,
+                temp: location.temp
                 // Add any other location data you want to save
             }]);
         }

@@ -24,7 +24,10 @@ export default function Header({ currentLocation }) {
             if (isFavourite(currentLocation.name)) {
                 removeFavourite(currentLocation.name);
             } else {
-                addFavourite(currentLocation);
+                addFavourite({
+                    name: currentLocation.name,
+                    coordinates: currentLocation.coordinates
+                });
             }
         } catch (error) {
             console.error('Error handling favorite:', error);

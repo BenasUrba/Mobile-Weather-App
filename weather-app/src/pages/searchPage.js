@@ -19,12 +19,17 @@ function SearchPage() {
                 <h2 className="favourites-header">Your Saved Locations</h2>
                 <div className="favourites-box">
                     {favourites.length === 0 ? (
-                        <p className="no-favourites">No saved locations yet</p>
+                        <div className="no-favourites-container">
+                            <p className="no-favourites">No saved locations yet</p>
+                            <p className="no-favourites-hint">
+                                Search for a location and click the star icon to save it
+                            </p>
+                        </div>
                     ) : (
                         favourites.map((location) => (
                             <FavoriteItem 
                                 key={location.name} 
-                                location={location} 
+                                location={location}
                             />
                         ))
                     )}
