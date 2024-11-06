@@ -38,9 +38,15 @@ export default function WeatherPage() {
     const currentLocation = weatherData ? {
         name: `${weatherData.name}, ${weatherData.sys.country}`,
         coordinates: { lat: weatherData.coord.lat, lon: weatherData.coord.lon },
-        icon: weatherData.weather[0].icon,
-        pop: forecastData?.list[0]?.pop * 100,
-        temp: Math.round(weatherData.main.temp)
+        current: {
+            temp: Math.round(weatherData.main.temp),
+            weather: [{
+                icon: weatherData.weather[0].icon
+            }]
+        },
+        daily: [{
+            pop: forecastData?.list[0]?.pop || 0  // Probability of precipitation from forecast
+        }]
     } : null;
 
     if (loading) {
